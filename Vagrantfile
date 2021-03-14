@@ -11,11 +11,9 @@ Vagrant.configure("2") do |config|
     vb.name = "project-salt"
     vb.cpus = 4
   end
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  
-  # SHELL
-  config.vm.provision :salt do |salt|
+
+   # SHELL
+   config.vm.provision :salt do |salt|
   
     salt.install_master = true
     salt.seed_master = {
@@ -26,6 +24,7 @@ Vagrant.configure("2") do |config|
     salt.master_pub = "salt/key/master.pub"
     salt.minion_key = "salt/key/minion.key"
     salt.minion_pub = "salt/key/minion.pub"
+    salt.verbose = true
   end
   config.vm.provision "shell", inline: <<-SHELL
     service salt-minion start && sleep 10
@@ -34,6 +33,7 @@ Vagrant.configure("2") do |config|
     salt.verbose = true
     salt.log_level = "warning"
     salt.colorize = true
+    salt.masterless = true
     salt.run_highstate = true
   end
 end
