@@ -20,6 +20,7 @@ Vagrant.configure("2") do |config|
       salt: "salt/key/minion.pub"
     }
     salt.minion_config = "salt/minion"
+    salt.master_config = "salt/master"
     salt.master_key = "salt/key/master.pem"
     salt.master_pub = "salt/key/master.pub"
     salt.minion_key = "salt/key/minion.key"
